@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadri Marathon 2025 - E Certificate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .search-input {
+            transition: all 0.2s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #0d9488;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+        }
+        
+        .search-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .search-btn:hover:not(:disabled) {
+            background-color: #0f766e;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+        }
+        
+        .search-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        
+        .search-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .result-card {
+            transition: all 0.3s ease;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .spinner {
+            border: 3px solid #e5e7eb;
+            border-top: 3px solid #0d9488;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.7s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-teal-600 to-cyan-600 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-white">Sadri Marathon 2025</h1>
+                    <p class="text-xs sm:text-sm text-teal-50 mt-0.5 sm:mt-1">E-Certificate Download</p>
+                </div>
+                <div class="hidden sm:block text-right">
+                    <div class="text-xs text-teal-100 font-semibold uppercase tracking-wide">Event Date</div>
+                    <div class="text-base sm:text-lg font-bold text-white mt-1">Dec 28, 2025</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <!-- Search Section -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
+            <div class="mb-4 sm:mb-5">
+                <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Download Your E-Certificate</h2>
+                <p class="text-xs sm:text-sm text-gray-600">Enter your Bib Number to generate and download your certificate</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input 
+                    type="text" 
+                    id="bibInput" 
+                    placeholder="e.g., 3001 or 3599"
+                    class="search-input flex-1 px-4 py-3 sm:py-3.5 border-2 border-gray-300 rounded-lg text-sm sm:text-base"
+                    autocomplete="off"
+                >
+                <button id="searchBtn" class="search-btn bg-teal-600 text-white font-semibold py-3 sm:py-3.5 px-6 sm:px-8 rounded-lg whitespace-nowrap text-sm sm:text-base">
+                    Get Certificate
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsContainer"></div>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="hidden flex flex-col items-center justify-center py-12">
+            <div class="spinner"></div>
+            <p class="text-sm text-gray-600 font-medium mt-3">Generating certificate...</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+            <div class="text-center space-y-3">
+                <p class="text-sm sm:text-base font-semibold text-white">
+                    Sadri Marathon Team
+                </p>
+                <p class="text-xs sm:text-sm text-gray-400">
+                    Need a similar website for your event? Contact us for quick and reliable web solutions.
+                </p>
+                <p class="text-xs sm:text-sm text-gray-400">
+                    © 2025 All Rights Reserved to <a href="https://contact.abhiwebstudio.in" target="_blank" class="font-semibold text-teal-400 hover:text-teal-300 transition-colors">abhiwebstudio.in</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hidden canvas for certificate generation -->
+    <canvas id="certificateCanvas" width="1200" height="850" style="display:none;"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
